@@ -1,7 +1,10 @@
 {
   "name": "Vrome",
   "description": "Bringing Vim's elegance to Chrome",
-  "background_page": "background/background.html",
+  "manifest_version": 2,
+  "background": {
+    "page": "background/background.html"
+  },
   "version": "0.6.5",
   "content_scripts":[{
     "css":["styles/main.css"],
@@ -27,7 +30,7 @@
     "128": "images/icons-128.png"
   },
   "browser_action": {
-    "popup": "background/popup.html",
+    "default_popup": "background/popup.html",
     "default_icon": "images/logo.png",
     "default_title": "Vrome"
   },
