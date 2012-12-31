@@ -1,17 +1,16 @@
-chrome.extension.onConnect.addListener(function(port) {
-  port.onMessage.addListener(function(msg) {
-    var tab     = port.tab;
-    var actions = msg.action.split('.');
+chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+  // Get Function
+  var actions = msg.action.split('.');
+  var action = window[actions.shift()];
+  while (action && actions[0]) { action = action[actions.shift()]; }
 
-    // Action /*Function*/
-    var action  = window[actions.shift()];
-    while (action && actions[0]) { action = action[actions.shift()]; }
+  // Get Argument
+  var argument = (typeof msg.arguments != 'undefined') ? msg.arguments : msg;
+  argument     = (argument instanceof Array) ? argument : [argument];
 
-    // Argument /*Array*/ = msg.arguments || msg,
-    var argument = (typeof msg.arguments != 'undefined') ? msg.arguments : msg;
-    argument     = (argument instanceof Array) ? argument : [argument];
-    argument.push(tab);
-
-    if (action instanceof Function) action.apply('', argument);
-  });
-})
+  // Run Function & Pass Tab to it
+  var tab = sender.tab;
+  tab.sendResponse = sendResponse;
+  argument.push(tab);
+  if (action instanceof Function) action.apply('', argument);
+});

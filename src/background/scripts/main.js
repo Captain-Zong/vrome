@@ -1,6 +1,5 @@
-var Post = function(tab,message) {
-  var port = chrome.tabs.connect(tab.id, {});
-  port.postMessage(message);
+var Post = function(tab, message) {
+  chrome.tabs.sendMessage(tab.id, message, function(response) { });
 };
 
 function storeLastCommand(msg) {
