@@ -2,17 +2,20 @@
   "name": "Vrome",
   "description": "Bringing Vim's elegance to Chrome",
   "manifest_version": 2,
+  "version": "0.6.5",
+  "offline_enabled": true,
+
   "background": {
     "page": "background/background.html"
   },
-  "version": "0.6.5",
+
   "content_scripts":[{
     "css":["styles/main.css"],
     "all_frames":true,"run_at":"document_start",
     "js":[""],
     "matches":["<all_urls>"]
   }],
-  "offline_enabled": true,
+
   "permissions": [
     "tabs",
     "bookmarks",
@@ -24,15 +27,16 @@
     "contextMenus",
     "<all_urls>"
   ],
-  "icons": {
-    "16": "images/icons-16.png",
-    "48": "images/logo.png",
-    "128": "images/icons-128.png"
-  },
+
   "browser_action": {
     "default_popup": "background/popup.html",
-    "default_icon": "images/logo.png",
+    "default_icon": {
+      "16": "images/icons-16.png",
+      "48": "images/logo.png",
+      "128": "images/icons-128.png"
+    },
     "default_title": "Vrome"
   },
+
   "options_page": "background/options.html"
 }
