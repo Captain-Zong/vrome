@@ -105,6 +105,7 @@ a[vrome_highlight=hint_active] {
   font-family: Lucida Grande, Arial, Sans !important;
   opacity: 0.9 !important;
   overflow: hidden !important;
+  bottom: 1px !important;
 }
 
 #__vrome_dialog a {
